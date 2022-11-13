@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{%block body_block%}
+<div class="container-fluid">
+    <div class="row">
+        {%for cart in carts%}
+        <div class="col-3"></div>
+        <div class="col-4">
+            <div class="card h-30 mt-3 border-danger">
+                <!-- Product image-->
+                <img class="card-img-top" src="{{cart.product.image.url}}" alt="..." height="200px"/>
+                <!-- Product details-->
+                <div class="card-body p-4">
+                    <div class="text-center">
+                        <!-- Product name-->
+                        <h5 class="fw-bolder">{{cart.product.product_name}}</h5>
+                        <!-- Product price-->
+                        ${{cart.product.price}}
+                    </div>
+                </div>
+                <!-- Product actions-->
+            </div>
+        </div>
+        <div class="col-3 mt-3">
+           <div> qty:{{cart.qty}}</div>
+            <div>status:{{cart.status}}</div>
+        </div>
+        <div class="col-2 mt-3">
+            <a href="{%url 'remove-product' cart.id%}" class="btn btn-danger" >Remove</a>
+            {%if cart.status != "order-placed"%}
+            <a href="{%url 'place-order' cart.id cart.product.id%}" class="btn btn-success">checkout</a>
+            {%endif%}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{%endblock%}

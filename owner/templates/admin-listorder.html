@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row col-2"></div>
+        <div class="row col-8">
+            <table class="table">
+                <tr>
+                    <th>ProductName</th>
+                    <th>Category</th>
+                    <th>User</th>
+                    <th>Created_date</th>
+                    <th>Action</th>
+                </tr>
+                {%for order in orders%}
+                <tr>
+                    <td>{{order.product.product_name}}</td>
+                    <td>{{order.product.category.category_name}}</td>
+                    <td>{{order.user}}</td>
+                    <td>{{order.created_date}}</td>
+                    <td>
+                        <a href="{%url 'order-details' order.id%}">view</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="row col-2"></div>
+    </div>
+</body>
+</html> 
